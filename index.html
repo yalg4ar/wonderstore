@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>wonderpk.store — پاکستان کا سب سے معتبر ڈیجیٹل مارکیٹ پلیس</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Noto+Nastaliq+Urdu:wght@400;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            pk: {
+              cream: '#F8F3EA',      /* Luxury Page Background */
+              beige: '#EDE1D0',      /* Tactile Card Surface */
+              border: '#DFD2BF',     /* Muted Gold-Beige Border */
+              burgundy: '#681F32',   /* Primary Regal Velvet */
+              maroon: '#4A1726',     /* Deep Imperial Heading */
+              rose: '#A8757D',       /* Warm Accent Tone */
+              taupe: '#B8A28E',      /* Neutral Complement */
+              charcoal: '#282323',   /* Editorial Text */
+              gold: '#C5A059',       /* Antique Pakistani Gold */
+              white: '#FFFFFF'
+            }
+          },
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', '-apple-system', 'sans-serif'],
+            serif: ['"Cormorant Garamond"', 'Georgia', 'serif'],
+            urdu: ['"Noto Nastaliq Urdu"', 'serif'],
+            mono: ['"Space Mono"', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      background-color: #F8F3EA;
+      color: #282323;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Subtle Mughal Geometric Watermark Background */
+    .bg-mughal-pattern {
+      background-color: #F8F3EA;
+      background-image: 
+        radial-gradient(#681F32 0.6px, transparent 0.6px), 
+        radial-gradient(#681F32 0.6px, #F8F3EA 0.6px);
+      background-size: 28px 28px;
+      background-position: 0 0, 14px 14px;
+    }
+
+    /* Traditional Jaali Divider Line */
+    .jaali-divider {
+      background-image: repeating-linear-gradient(45deg, #681F32 0, #681F32 1.5px, transparent 0, transparent 9px);
+      opacity: 0.16;
+      height: 5px;
+    }
+
+    /* ========================================================
+       PREMIUM PRODUCT CARD HOVER GLOW & LIGHT SWEEP
+       ======================================================== */
+    .product-card {
+      position: relative;
+      background: #EDE1D0;
+      border: 1px solid #DFD2BF;
+      border-radius: 1.25rem;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      overflow: hidden;
+    }
+
+    /* Ambient Velvet Glow on Hover */
+    .product-card:hover {
+      transform: translateY(-6px);
+      border-color: #681F32;
+      box-shadow: 
+        0 20px 35px -10px rgba(104, 31, 50, 0.22),
+        0 0 25px 2px rgba(168, 117, 125, 0.25),
+        inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    }
+
+    /* Diagonal Shimmer Sweep */
+    .product-card::after {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -60%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(
+        60deg,
+        transparent 35%,
+        rgba(255, 255, 255, 0.28) 50%,
+        transparent 65%
+      );
+      transform: rotate(25deg);
+      opacity: 0;
+      transition: opacity 0.5s ease;
+      pointer-events: none;
+    }
+
+    .product-card:hover::after {
+      opacity: 1;
+      animation: cardShimmer 1.1s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    @keyframes cardShimmer {
+      0% { transform: translate(-100%, -100%) rotate(25deg); }
+      100% { transform: translate(100%, 100%) rotate(25deg); }
+    }
+
+    /* Glowing Button Animation */
+    .btn-glow {
+      position: relative;
+      transition: all 0.3s ease;
+    }
+    .btn-glow:hover {
+      box-shadow: 0 8px 25px -4px rgba(104, 31, 50, 0.45), 0 0 15px rgba(197, 160, 89, 0.3);
+      transform: translateY(-1px);
+    }
+
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+  </style>
+</head>
+<body class="selection:bg-pk-burgundy selection:text-pk-cream min-h-screen flex flex-col justify-between">
+
+  <!-- ================= NOTIFICATION TOAST ================= -->
+  <div id="toast" class="fixed top-6 left-1/2 -translate-x-1/2 z-50 pointer-events-none transition-all duration-300 opacity-0 translate-y-[-12px]">
+    <div class="bg-pk-maroon text-pk-cream border border-pk-gold/40 px-6 py-3 rounded-full shadow-2xl flex items-center gap-3 text-xs tracking-wide">
+      <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+      <span id="toast-text" class="font-medium">Number copied to clipboard</span>
+    </div>
+  </div>
+
+  <!-- ================= TOP LUXURY STATUS BAR ================= -->
+  <div class="bg-pk-maroon text-pk-cream text-[11px] py-2.5 px-4 border-b border-pk-burgundy/50 shadow-inner">
+    <div class="max-w-6xl mx-auto flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <span class="font-urdu text-[11px] text-pk-gold">فوری ڈیلیوری</span>
+        <span class="text-pk-border/40">•</span>
+        <span class="font-semibold tracking-wide">Easy Payments. Simple Ordering. Local Support.</span>
+      </div>
+      <div class="flex items-center gap-4 text-[10px] font-mono tracking-widest uppercase text-pk-beige">
+        <span class="hidden sm:inline">WhatsApp Order Desk: <strong>0328-1128196</strong></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= LUXURY HEADER ================= -->
+  <header class="bg-pk-cream/95 backdrop-blur-md sticky top-0 z-40 border-b border-pk-border shadow-sm">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-20 flex items-center justify-between">
+      
+      <!-- Brand Logo -->
+      <a href="#/" class="flex items-center gap-3 group">
+        <div class="w-11 h-11 rounded-2xl bg-gradient-to-br from-pk-burgundy to-pk-maroon flex items-center justify-center text-pk-cream font-serif text-2xl font-bold shadow-md group-hover:scale-105 transition-all duration-300 border border-pk-gold/30">
+          W
+        </div>
+        <div class="flex flex-col">
+          <span class="font-serif text-2xl sm:text-3xl font-bold tracking-tight text-pk-maroon leading-none">
+            wonderpk<span class="text-pk-burgundy font-sans text-xl">.store</span>
+          </span>
+          <span class="text-[9px] tracking-[0.28em] uppercase text-pk-rose font-bold mt-1">
+            پریمیم ڈیجیٹل مارکیٹ پلیس • Pakistan
+          </span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation -->
+      <nav class="hidden md:flex items-center gap-8 text-xs uppercase tracking-wider font-bold text-pk-charcoal">
+        <a href="#/" class="hover:text-pk-burgundy transition">Home</a>
+        <a href="#/products" class="hover:text-pk-burgundy transition">All Products</a>
+        <a href="#/categories" class="hover:text-pk-burgundy transition">Collections</a>
+        <a href="#/how-it-works" class="hover:text-pk-burgundy transition">How It Works</a>
+      </nav>
+
+      <!-- WhatsApp Quick Button with 03281128196 -->
+      <div class="flex items-center gap-3">
+        <a href="https://wa.me/923281128196?text=Assalam-o-Alaikum%20WonderPK,%20I%20have%20an%20inquiry%20regarding%20digital%20subscriptions." target="_blank" class="btn-glow inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-pk-burgundy hover:bg-pk-maroon text-pk-cream text-xs font-bold tracking-wide transition shadow-md border border-pk-gold/20">
+          <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+          <span>WhatsApp Desk</span>
+        </a>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- ================= SPA VIEWS CONTAINER ================= -->
+  <div id="app" class="flex-grow">
+
+    <!-- ================= VIEW 1: HOME ================= -->
+    <div id="view-home" class="spa-view">
+      
+      <!-- Editorial Hero Section -->
+      <section class="py-16 sm:py-24 px-4 sm:px-6 text-center border-b border-pk-border relative overflow-hidden bg-mughal-pattern">
+        <div class="max-w-3xl mx-auto space-y-6 relative z-10">
+          
+          <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-pk-beige border border-pk-gold/40 text-pk-maroon text-xs font-semibold shadow-sm">
+            <span class="font-urdu text-sm text-pk-burgundy">معیاری اور تیز ترین</span>
+            <span class="text-pk-rose">•</span>
+            <span>Premium Digital Services, Made Simple.</span>
+          </div>
+
+          <h1 class="font-serif text-4xl sm:text-6xl md:text-7xl font-bold text-pk-maroon leading-[1.08] tracking-tight">
+            Your Digital World,<br>
+            <span class="italic font-normal text-pk-burgundy">Your Way.</span>
+          </h1>
+
+          <p class="text-sm sm:text-base text-pk-charcoal/85 max-w-xl mx-auto leading-relaxed font-normal">
+            Discover premium entertainment, AI subscriptions, and VPN services with simple ordering and convenient local payment options.
+          </p>
+
+          <div class="pt-2 flex flex-wrap items-center justify-center gap-4">
+            <a href="#/products" class="btn-glow px-8 py-4 rounded-xl bg-pk-burgundy hover:bg-pk-maroon text-pk-cream font-bold text-xs uppercase tracking-wider transition shadow-md active:scale-95 border border-pk-gold/20">
+              Explore Products
+            </a>
+            <a href="#/categories" class="px-8 py-4 rounded-xl bg-pk-beige hover:bg-pk-border text-pk-maroon font-bold text-xs uppercase tracking-wider transition border border-pk-border active:scale-95 shadow-sm">
+              Browse Categories
+            </a>
+          </div>
+
+          <!-- Trust-Information Strip (Strictly Preserved) -->
+          <div class="pt-8 border-t border-pk-border/70 max-w-lg mx-auto flex items-center justify-between text-xs font-bold text-pk-maroon">
+            <div class="flex items-center gap-2">
+              <span class="text-pk-burgundy text-sm font-serif">✦</span>
+              <span>Prices in PKR</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-pk-burgundy text-sm font-serif">✦</span>
+              <span>Local Payment Options</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <span class="text-pk-burgundy text-sm font-serif">✦</span>
+              <span>WhatsApp Ordering</span>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- 3 Primary Categories Section with Hoverglow -->
+      <section id="categories" class="max-w-6xl mx-auto px-4 sm:px-6 py-16 space-y-8">
+        <div class="flex items-end justify-between border-b border-pk-border pb-4">
+          <div>
+            <span class="text-xs uppercase font-mono tracking-widest text-pk-rose font-bold">بنیادی کیٹیگریز</span>
+            <h2 class="font-serif text-2xl sm:text-3xl font-bold text-pk-maroon mt-1">Three Essential Collections</h2>
+          </div>
+          <span class="text-xs text-pk-charcoal/70 hidden sm:inline">Tap any card to filter catalogue</span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          
+          <!-- Category 1: AI Tools -->
+          <div onclick="filterAndShowCategory('ai-tools')" class="product-card p-7 sm:p-8 flex flex-col justify-between cursor-pointer group">
+            <div class="space-y-4">
+              <div class="w-14 h-14 rounded-2xl bg-pk-cream border border-pk-border flex items-center justify-center text-3xl shadow-inner group-hover:scale-105 transition-transform">
+                🤖
+              </div>
+              <span class="text-[10px] font-mono uppercase tracking-widest text-pk-burgundy font-bold">1 Product Available</span>
+              <h3 class="font-serif text-2xl font-bold text-pk-maroon group-hover:text-pk-burgundy transition">AI Tools</h3>
+              <p class="text-xs text-pk-charcoal/80 leading-relaxed">Explore AI-powered tools and premium artificial intelligence subscriptions.</p>
+            </div>
+            <div class="pt-6 mt-6 border-t border-pk-border/60 flex items-center justify-between">
+              <span class="text-xs font-bold text-pk-burgundy group-hover:translate-x-1.5 transition-transform inline-flex items-center gap-1">
+                View Products →
+              </span>
+            </div>
+          </div>
+
+          <!-- Category 2: Entertainment -->
+          <div onclick="filterAndShowCategory('entertainment')" class="product-card p-7 sm:p-8 flex flex-col justify-between cursor-pointer group">
+            <div class="space-y-4">
+              <div class="w-14 h-14 rounded-2xl bg-pk-cream border border-pk-border flex items-center justify-center text-3xl shadow-inner group-hover:scale-105 transition-transform">
+                🍿
+              </div>
+              <span class="text-[10px] font-mono uppercase tracking-widest text-pk-burgundy font-bold">7 Products Available</span>
+              <h3 class="font-serif text-2xl font-bold text-pk-maroon group-hover:text-pk-burgundy transition">Entertainment</h3>
+              <p class="text-xs text-pk-charcoal/80 leading-relaxed">Enjoy movies, television, streaming platforms, and premium digital entertainment.</p>
+            </div>
+            <div class="pt-6 mt-6 border-t border-pk-border/60 flex items-center justify-between">
+              <span class="text-xs font-bold text-pk-burgundy group-hover:translate-x-1.5 transition-transform inline-flex items-center gap-1">
+                View Products →
+              </span>
+            </div>
+          </div>
+
+          <!-- Category 3: VPN Services -->
+          <div onclick="filterAndShowCategory('vpn-services')" class="product-card p-7 sm:p-8 flex flex-col justify-between cursor-pointer group">
+            <div class="space-y-4">
+              <div class="w-14 h-14 rounded-2xl bg-pk-cream border border-pk-border flex items-center justify-center text-3xl shadow-inner group-hover:scale-105 transition-transform">
+                🛡️
+              </div>
+              <span class="text-[10px] font-mono uppercase tracking-widest text-pk-burgundy font-bold">2 Products Available</span>
+              <h3 class="font-serif text-2xl font-bold text-pk-maroon group-hover:text-pk-burgundy transition">VPN Services</h3>
+              <p class="text-xs text-pk-charcoal/80 leading-relaxed">Improve your online privacy and access VPN services.</p>
+            </div>
+            <div class="pt-6 mt-6 border-t border-pk-border/60 flex items-center justify-between">
+              <span class="text-xs font-bold text-pk-burgundy group-hover:translate-x-1.5 transition-transform inline-flex items-center gap-1">
+                View Products →
+              </span>
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+      <!-- Decorative Mughal Jaali Divider -->
+      <div class="max-w-6xl mx-auto px-4 sm:px-6">
+        <div class="jaali-divider"></div>
+      </div>
+
+      <!-- Featured Product Catalogue Section (Clickable Cards with Hover-Glow) -->
+      <section class="max-w-6xl mx-auto px-4 sm:px-6 py-16 space-y-8">
+        <div class="flex items-center justify-between border-b border-pk-border pb-4">
+          <div>
+            <span class="text-xs uppercase font-mono tracking-widest text-pk-rose font-bold">مقبول ترین سروسز</span>
+            <h2 class="font-serif text-2xl sm:text-3xl font-bold text-pk-maroon mt-0.5">Featured Digital Services</h2>
+          </div>
+          <a href="#/products" class="text-xs font-bold text-pk-burgundy hover:text-pk-maroon transition flex items-center gap-1">
+            <span>View All 10 Services</span>
+            <span>→</span>
+          </a>
+        </div>
+
+        <!-- 2 cols mobile, 4 cols desktop -->
+        <div id="home-products-grid" class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
+          <!-- Entire card clickable, injected via JS -->
+        </div>
+      </section>
+
+      <!-- How It Works Section -->
+      <section id="how-it-works" class="bg-pk-beige/40 border-y border-pk-border py-16 px-4 sm:px-6">
+        <div class="max-w-5xl mx-auto space-y-12">
+          <div class="text-center space-y-2">
+            <span class="text-xs uppercase font-mono tracking-widest text-pk-rose font-bold">طریقہ کار</span>
+            <h3 class="font-serif text-3xl font-bold text-pk-maroon">How It Works in 3 Simple Steps</h3>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-xs">
+            <div class="bg-pk-cream p-6 rounded-2xl border border-pk-border space-y-3 shadow-sm hover:border-pk-burgundy transition">
+              <div class="w-8 h-8 rounded-full bg-pk-burgundy text-pk-cream flex items-center justify-center font-bold text-sm shadow">1</div>
+              <h4 class="font-bold text-sm text-pk-maroon">Choose Your Product</h4>
+              <p class="text-pk-charcoal/80 leading-relaxed">Select your preferred entertainment screen, AI assistant, or VPN privacy license.</p>
+            </div>
+            <div class="bg-pk-cream p-6 rounded-2xl border border-pk-border space-y-3 shadow-sm hover:border-pk-burgundy transition">
+              <div class="w-8 h-8 rounded-full bg-pk-burgundy text-pk-cream flex items-center justify-center font-bold text-sm shadow">2</div>
+              <h4 class="font-bold text-sm text-pk-maroon">Transfer Locally</h4>
+              <p class="text-pk-charcoal/80 leading-relaxed">Copy our official JazzCash, Easypaisa, or Bank account number and complete the payment.</p>
+            </div>
+            <div class="bg-pk-cream p-6 rounded-2xl border border-pk-border space-y-3 shadow-sm hover:border-pk-burgundy transition">
+              <div class="w-8 h-8 rounded-full bg-pk-burgundy text-pk-cream flex items-center justify-center font-bold text-sm shadow">3</div>
+              <h4 class="font-bold text-sm text-pk-maroon">Attach Screenshot on WhatsApp</h4>
+              <p class="text-pk-charcoal/80 leading-relaxed">Click Order on WhatsApp, attach your payment screenshot, and receive your credentials directly.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+
+    <!-- ================= VIEW 2: PRODUCTS CATALOGUE ================= -->
+    <div id="view-products" class="spa-view hidden max-w-6xl mx-auto px-4 sm:px-6 py-12 space-y-8">
+      
+      <div class="border-b border-pk-border pb-5 flex flex-col md:flex-row md:items-end justify-between gap-4">
+        <div>
+          <span class="text-xs uppercase font-mono tracking-widest text-pk-rose font-bold">مکمل کیٹلاگ</span>
+          <h1 class="font-serif text-3xl sm:text-4xl font-bold text-pk-maroon mt-1">All Available Subscriptions</h1>
+          <p class="text-xs text-pk-charcoal/70 mt-1">Tap any subscription card below to open its dedicated payment page.</p>
+        </div>
+
+        <!-- Category Filter Pills -->
+        <div class="flex flex-wrap gap-2 text-xs">
+          <button onclick="setCategoryFilter('all', this)" class="cat-pill px-4 py-2 rounded-xl font-bold border border-pk-burgundy bg-pk-burgundy text-pk-cream transition shadow-sm">All Products</button>
+          <button onclick="setCategoryFilter('ai-tools', this)" class="cat-pill px-4 py-2 rounded-xl font-semibold border border-pk-border bg-pk-beige text-pk-charcoal hover:border-pk-burgundy transition">AI Tools</button>
+          <button onclick="setCategoryFilter('entertainment', this)" class="cat-pill px-4 py-2 rounded-xl font-semibold border border-pk-border bg-pk-beige text-pk-charcoal hover:border-pk-burgundy transition">Entertainment</button>
+          <button onclick="setCategoryFilter('vpn-services', this)" class="cat-pill px-4 py-2 rounded-xl font-semibold border border-pk-border bg-pk-beige text-pk-charcoal hover:border-pk-burgundy transition">VPN Services</button>
+        </div>
+      </div>
+
+      <!-- Product Cards Grid with Hover-Glow -->
+      <div id="catalog-products-grid" class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
+        <!-- Injected via JS -->
+      </div>
+    </div>
+
+    <!-- ================= VIEW 3: DEDICATED PRODUCT DETAIL & PAYMENT ================= -->
+    <div id="view-product-detail" class="spa-view hidden max-w-5xl mx-auto px-4 sm:px-6 py-10 space-y-8">
+      
+      <!-- Breadcrumb Navigation -->
+      <div class="flex items-center justify-between pb-4 border-b border-pk-border">
+        <a href="#/products" class="text-xs font-bold uppercase tracking-wider text-pk-burgundy hover:text-pk-maroon transition flex items-center gap-1.5">
+          <span>← Back to All Subscriptions</span>
+        </a>
+        <span class="text-xs font-mono text-pk-rose" id="p-breadcrumb">Home / Subscription</span>
+      </div>
+
+      <!-- Two-Column Desktop / Stacked Mobile Stage -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+        
+        <!-- LEFT: Artwork & Details -->
+        <div class="lg:col-span-5 bg-pk-beige/80 rounded-3xl border border-pk-border p-6 sm:p-8 space-y-6 shadow-luxury">
+          
+          <div class="w-full h-48 sm:h-56 rounded-2xl bg-pk-cream border border-pk-border flex items-center justify-center p-6 shadow-inner relative overflow-hidden" id="p-art-container">
+            <!-- Brand Artwork Rendered with Ambient Backlight -->
+          </div>
+
+          <div>
+            <span id="p-category-tag" class="text-[10px] font-mono uppercase tracking-widest px-3 py-1 rounded-full bg-pk-burgundy/10 text-pk-burgundy border border-pk-burgundy/20 font-bold">
+              Category
+            </span>
+            <h1 id="p-name" class="font-serif text-3xl font-bold text-pk-maroon mt-3 leading-tight">
+              Subscription Name
+            </h1>
+            <div class="mt-2 text-2xl font-bold font-mono text-pk-burgundy" id="p-price">
+              Rs. 0
+            </div>
+            <p id="p-desc" class="text-xs text-pk-charcoal/85 mt-3 leading-relaxed">
+              Product description will appear here.
+            </p>
+          </div>
+
+          <div class="bg-pk-cream p-4 rounded-2xl border border-pk-border text-[11px] text-pk-charcoal/80 space-y-1">
+            <span class="font-bold text-pk-maroon block font-sans">🛡️ Local Verification Procedure</span>
+            <p>Every transaction is verified manually through our WhatsApp desk before account credentials and profile PINs are issued.</p>
+          </div>
+        </div>
+
+        <!-- RIGHT: Localized Payment & Direct WhatsApp Dispatch -->
+        <div class="lg:col-span-7 bg-pk-cream rounded-3xl border border-pk-border p-6 sm:p-8 space-y-6 shadow-luxury">
+          
+          <div class="border-b border-pk-border pb-4">
+            <h2 class="font-serif text-2xl font-bold text-pk-maroon">Payment & Ordering</h2>
+            <p class="text-xs text-pk-charcoal/70 mt-0.5">Please follow the payment instructions below to confirm your order.</p>
+          </div>
+
+          <!-- Strict 6-Step Instructions -->
+          <div class="space-y-3">
+            <span class="text-xs font-bold uppercase tracking-wider text-pk-maroon">Step-by-Step Instructions:</span>
+            <ol class="text-xs text-pk-charcoal/90 space-y-2 list-decimal list-inside bg-pk-beige/40 p-4 rounded-xl border border-pk-border font-medium">
+              <li>Select your payment method below.</li>
+              <li>Copy the payment account details.</li>
+              <li>Transfer the product amount (<span id="instruction-price" class="font-bold font-mono text-pk-burgundy">Rs. 0</span>).</li>
+              <li>Take a screenshot of the payment.</li>
+              <li>Open WhatsApp using the Order button.</li>
+              <li>Attach your payment screenshot and send your order.</li>
+            </ol>
+          </div>
+
+          <!-- Payment Method Selector -->
+          <div class="space-y-3 pt-2">
+            <label class="text-xs font-bold uppercase tracking-wider text-pk-maroon">1. Select Payment Method:</label>
+            <div class="grid grid-cols-3 gap-2" id="payment-method-selector">
+              <button onclick="selectDetailPayment('jazzcash', this)" class="pay-btn p-3 rounded-xl border border-pk-burgundy bg-pk-burgundy text-pk-cream text-xs font-bold transition shadow-sm">JazzCash</button>
+              <button onclick="selectDetailPayment('easypaisa', this)" class="pay-btn p-3 rounded-xl border border-pk-border bg-pk-beige text-pk-charcoal text-xs font-bold transition">Easypaisa</button>
+              <button onclick="selectDetailPayment('bank', this)" class="pay-btn p-3 rounded-xl border border-pk-border bg-pk-beige text-pk-charcoal text-xs font-bold transition">Bank Transfer</button>
+            </div>
+
+            <!-- Active Account Card with Copy Button -->
+            <div class="p-4 rounded-2xl bg-pk-beige border border-pk-border space-y-3 mt-3">
+              <div class="flex items-center justify-between">
+                <div>
+                  <span id="active-pay-label" class="text-[10px] uppercase font-bold text-pk-rose font-mono">JazzCash Account</span>
+                  <div id="active-pay-number" class="text-base font-bold font-mono text-pk-maroon mt-0.5">03281128196</div>
+                  <div id="active-pay-title" class="text-xs text-pk-charcoal/80 font-medium">Title: Muhammad Hussain</div>
+                </div>
+                <button onclick="copyActiveAccount()" class="btn-glow px-4 py-2 rounded-xl bg-pk-burgundy hover:bg-pk-maroon text-pk-cream text-xs font-bold uppercase tracking-wider transition shadow-sm">
+                  Copy Number
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Primary WhatsApp Order Action with 03281128196 -->
+          <div class="pt-4 border-t border-pk-border space-y-2">
+            <button onclick="launchWhatsAppOrder()" class="btn-glow w-full py-4 px-6 rounded-2xl bg-pk-burgundy hover:bg-pk-maroon text-pk-cream font-bold text-xs uppercase tracking-wider shadow-md transition active:scale-98 flex items-center justify-center gap-2.5 border border-pk-gold/20">
+              <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+              <span>Order on WhatsApp (0328-1128196)</span>
+            </button>
+            <p class="text-[10px] text-center text-pk-charcoal/70">
+              The order message is pre-filled automatically. <strong>Attach your payment screenshot in the WhatsApp chat.</strong>
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- ================= LUXURY FOOTER ================= -->
+  <footer class="bg-pk-maroon text-pk-cream pt-16 pb-12 border-t border-pk-burgundy px-4 sm:px-6 text-xs mt-20">
+    <div class="max-w-6xl mx-auto space-y-12">
+      
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 border-b border-pk-burgundy pb-12">
+        
+        <!-- Brand Narrative -->
+        <div class="space-y-4">
+          <span class="font-serif text-2xl font-bold text-pk-cream tracking-tight">
+            wonderpk<span class="text-pk-rose">.store</span>
+          </span>
+          <p class="text-pk-beige/80 leading-relaxed text-[11px]">
+            Pakistan's bespoke digital subscription marketplace. Providing seamless access to international entertainment, AI tools, and VPN privacy with direct local payments.
+          </p>
+          <div class="pt-1">
+            <span class="text-[10px] font-mono uppercase tracking-widest text-pk-rose">Operating Desk</span>
+            <p class="text-pk-cream font-medium">WhatsApp: 0328-1128196</p>
+          </div>
+        </div>
+
+        <!-- Collections -->
+        <div class="space-y-3">
+          <h5 class="font-semibold text-pk-beige uppercase tracking-wider text-[11px]">Collections</h5>
+          <ul class="space-y-2 text-[11px] text-pk-beige/80">
+            <li><a href="javascript:void(0)" onclick="filterAndShowCategory('entertainment')" class="hover:text-pk-cream transition">Entertainment Streams</a></li>
+            <li><a href="javascript:void(0)" onclick="filterAndShowCategory('ai-tools')" class="hover:text-pk-cream transition">AI & Productivity Tools</a></li>
+            <li><a href="javascript:void(0)" onclick="filterAndShowCategory('vpn-services')" class="hover:text-pk-cream transition">VPN Privacy Networks</a></li>
+            <li><a href="#/products" class="hover:text-pk-cream transition">All 10 Subscriptions</a></li>
+          </ul>
+        </div>
+
+        <!-- Domestic Payment Rails -->
+        <div class="space-y-3">
+          <h5 class="font-semibold text-pk-beige uppercase tracking-wider text-[11px]">Local Payment Options</h5>
+          <div class="space-y-2 text-[11px] text-pk-beige/80">
+            <p><strong>JazzCash:</strong> 03281128196</p>
+            <p><strong>Easypaisa:</strong> 03281128196</p>
+            <p><strong>Bank Transfer:</strong> Raast & IBFT Available</p>
+            <p class="text-[10px] text-pk-rose pt-1">No international bank conversion tax.</p>
+          </div>
+        </div>
+
+        <!-- Customer Communication -->
+        <div class="space-y-3">
+          <h5 class="font-semibold text-pk-beige uppercase tracking-wider text-[11px]">WhatsApp Desk</h5>
+          <p class="text-[11px] text-pk-beige/80 leading-relaxed">Your favourite digital services, just a WhatsApp away.</p>
+          <a href="https://wa.me/923281128196" target="_blank" class="btn-glow inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-pk-burgundy hover:bg-pk-cream hover:text-pk-maroon text-pk-cream font-bold text-[11px] transition shadow">
+            Chat on 03281128196
+          </a>
+        </div>
+
+      </div>
+
+      <!-- Bottom Bar -->
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4 text-[10px] text-pk-beige/70">
+        <p>© <span id="year"></span> wonderpk.store. All rights reserved across Pakistan.</p>
+        <p class="text-center sm:text-right max-w-lg">
+          Official Support Line: 0328-1128196. Netflix, Prime Video, and OpenAI trademarks belong to their respective corporate owners.
+        </p>
+      </div>
+
+    </div>
+  </footer>
+
+  <!-- ================= APPLICATION ENGINE ================= -->
+  <script>
+    /* ========================================================
+       1. GLOBAL CONFIGURATION (Updated with 03281128196)
+       ======================================================== */
+    const CONFIG = {
+      storeName: "wonderpk.store",
+      whatsappNumber: "923281128196", // Formatted for international WhatsApp API
+      whatsappDisplay: "0328-1128196",
+      currency: "Rs.",
+      accounts: {
+        jazzcash: {
+          label: "JazzCash Account",
+          number: "03281128196",
+          title: "Muhammad Hussain"
+        },
+        easypaisa: {
+          label: "Easypaisa Account",
+          number: "03281128196",
+          title: "Muhammad Hussain"
+        },
+        bank: {
+          label: "Bank Account (Raast / IBFT)",
+          number: "03281128196",
+          title: "Muhammad Hussain"
+        }
+      }
+    };
+
+    /* ========================================================
+       2. EXACT PRODUCTS CATALOGUE (Strict Names & Prices in PKR)
+       ======================================================== */
+    const PRODUCTS = [
+      // AI TOOLS
+      {
+        id: "chatgpt-plus",
+        name: "ChatGPT Plus",
+        category: "ai-tools",
+        categoryName: "AI Tools",
+        price: 1500,
+        description: "Explore AI-powered tools and premium artificial intelligence with GPT-4o, DALL-E, Canvas, and high-speed data analysis.",
+        imageUrl: "https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg",
+        brandTone: "bg-[#10A37F]/10"
+      },
+      // ENTERTAINMENT
+      {
+        id: "netflix-shared",
+        name: "Netflix Shared",
+        category: "entertainment",
+        categoryName: "Entertainment",
+        price: 400,
+        description: "Enjoy movies, television, and international streaming on a shared profile with 4K Ultra HD playback enabled.",
+        imageUrl: "https://upload.wikimedia.org/wikipedia/commons/0/0c/Netflix_2015_N_logo.svg",
+        brandTone: "bg-[#E50914]/10"
+      },
+      {
+        id: "netflix-private",
+        name: "Netflix Private Screen",
+        category: "entertainment",
+        categoryName: "Entertainment",
+        price: 500,
+        description: "Dedicated personal screen protected with your own 4-digit PIN lock. Private watchlist and viewing history.",
+        imageUrl: "https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg",
+        brandTone: "bg-[#E50914]/10"
+      },
+      {
+        id: "amazon-prime",
+        name: "Amazon Prime",
+        category: "entertainment",
+        categoryName: "Entertainment",
+        price: 150,
+        description: "Official Prime Video screen. Enjoy Amazon Originals, global blockbuster cinema, and television series in Full HD/4K.",
+        imageUrl: "https://upload.wikimedia.org/wikipedia/commons/f/f1/Prime_Video.png",
+        brandTone: "bg-[#00A8E1]/10"
+      },
+      {
+        id: "hbo-max",
+        name: "HBO Max",
+        category: "entertainment",
+        categoryName: "Entertainment",
+        price: 400,
+        description: "Stream premium HBO originals, Warner Bros films, DC Universe hits, and exclusive worldwide entertainment releases.",
+        imageUrl: "https://upload.wikimedia.org/wikipedia/commons/1/17/HBO_Max_Logo.svg",
+        brandTone: "bg-[#B432FE]/10"
+      },
+      {
+        id: "chaupal",
+        name: "Chaupal",
+        category: "entertainment",
+        categoryName: "Entertainment",
+        price: 350,
+        description: "Regional digital streaming platform with Punjabi, Haryanvi, and Bhojpuri movies, exclusive web series, and cinema.",
+        imageUrl: "https://images.seeklogo.com/logo-png/43/1/chaupal-logo-png_seeklogo-434057.png",
+        brandTone: "bg-amber-500/10"
+      },
+      {
+        id: "opplex-iptv",
+        name: "Opplex IPTV",
+        category: "entertainment",
+        categoryName: "Entertainment",
+        price: 350,
+        description: "Comprehensive live sports broadcasting, international channels, and video-on-demand media for Smart TV and mobile players.",
+        imageUrl: "https://cdn-icons-png.flaticon.com/512/3845/3845868.png",
+        brandTone: "bg-teal-500/10"
+      },
+      {
+        id: "netflix-prime-combo",
+        name: "Netflix Shared Screen + Prime Combo",
+        category: "entertainment",
+        categoryName: "Entertainment",
+        price: 500,
+        description: "Special entertainment bundle providing combined access to both a Netflix Shared Screen and an Amazon Prime Video account.",
+        imageUrl: "https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg",
+        brandTone: "bg-pk-burgundy/10"
+      },
+      // VPN SERVICES
+      {
+        id: "nordvpn",
+        name: "NordVPN",
+        category: "vpn-services",
+        categoryName: "VPN Services",
+        price: 400,
+        description: "Improve your online privacy with high-speed encrypted VPN servers, privacy tools, and secure browsing.",
+        imageUrl: "https://upload.wikimedia.org/wikipedia/commons/b/b9/NordVPN_horizontal_logo.svg",
+        brandTone: "bg-[#4687FF]/10"
+      },
+      {
+        id: "surfshark",
+        name: "Surfshark",
+        category: "vpn-services",
+        categoryName: "VPN Services",
+        price: 400,
+        description: "Improve online privacy with CleanWeb ad blocking, secure multi-hop servers, and private internet access.",
+        imageUrl: "https://upload.wikimedia.org/wikipedia/commons/8/8a/Surfshark_Logo.svg",
+        brandTone: "bg-[#18CBB6]/10"
+      }
+    ];
+
+    /* ========================================================
+       3. ROUTING & CONTROLLER
+       ======================================================== */
+    let currentFilter = 'all';
+    let currentActiveProduct = null;
+    let currentActivePaymentMethod = 'jazzcash';
+
+    function router() {
+      const hash = window.location.hash || '#/';
+      const views = document.querySelectorAll('.spa-view');
+      views.forEach(v => v.classList.add('hidden'));
+
+      if (hash.startsWith('#/product/')) {
+        const slug = hash.replace('#/product/', '');
+        renderProductDetailPage(slug);
+        document.getElementById('view-product-detail').classList.remove('hidden');
+      } else if (hash.startsWith('#/products') || hash.startsWith('#/categories')) {
+        document.getElementById('view-products').classList.remove('hidden');
+        renderCatalogueGrid();
+      } else {
+        document.getElementById('view-home').classList.remove('hidden');
+        renderHomeGrid();
+      }
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    window.addEventListener('hashchange', router);
+
+    /* ========================================================
+       4. PRODUCT CARD BUILDER (WITH HOVER-GLOW & SHIMMER)
+       ======================================================== */
+    function createProductCardHTML(prod) {
+      return `
+        <div onclick="openProductPage('${prod.id}')" class="product-card p-4 sm:p-5 flex flex-col justify-between cursor-pointer group">
+          <div class="space-y-4">
+            
+            <!-- Logo / Artwork Display -->
+            <div class="w-full h-28 sm:h-32 rounded-xl bg-pk-cream border border-pk-border/80 flex items-center justify-center p-4 relative overflow-hidden shadow-inner ${prod.brandTone}">
+              <img src="${prod.imageUrl}" alt="${prod.name}" class="max-h-12 max-w-[80%] object-contain filter group-hover:scale-110 transition-transform duration-300" onerror="this.onerror=null; this.src='https://cdn-icons-png.flaticon.com/512/2989/2989988.png';">
+            </div>
+
+            <!-- Details -->
+            <div>
+              <span class="text-[9px] font-mono uppercase tracking-widest text-pk-rose font-bold">${prod.categoryName}</span>
+              <h3 class="font-serif text-base sm:text-lg font-bold text-pk-maroon group-hover:text-pk-burgundy transition line-clamp-1 mt-0.5">
+                ${prod.name}
+              </h3>
+              <p class="text-[11px] text-pk-charcoal/80 mt-1 line-clamp-2 leading-relaxed">
+                ${prod.description}
+              </p>
+            </div>
+
+          </div>
+
+          <!-- Price & Indicator -->
+          <div class="pt-4 mt-3 border-t border-pk-border/60 flex items-center justify-between">
+            <span class="text-sm sm:text-base font-extrabold font-mono text-pk-burgundy">
+              Rs. ${prod.price.toLocaleString()}
+            </span>
+            <span class="text-xs font-bold text-pk-burgundy group-hover:translate-x-1 transition-transform">
+              Order →
+            </span>
+          </div>
+
+        </div>
+      `;
+    }
+
+    function renderHomeGrid() {
+      const container = document.getElementById('home-products-grid');
+      container.innerHTML = PRODUCTS.slice(0, 4).map(createProductCardHTML).join('');
+    }
+
+    function renderCatalogueGrid() {
+      const container = document.getElementById('catalog-products-grid');
+      const filtered = PRODUCTS.filter(p => currentFilter === 'all' || p.category === currentFilter);
+      container.innerHTML = filtered.map(createProductCardHTML).join('');
+    }
+
+    function setCategoryFilter(cat, btnElement) {
+      currentFilter = cat;
+      document.querySelectorAll('.cat-pill').forEach(b => {
+        b.className = 'cat-pill px-4 py-2 rounded-xl font-semibold border border-pk-border bg-pk-beige text-pk-charcoal hover:border-pk-burgundy transition';
+      });
+      if (btnElement) {
+        btnElement.className = 'cat-pill px-4 py-2 rounded-xl font-bold border border-pk-burgundy bg-pk-burgundy text-pk-cream transition shadow-sm';
+      }
+      renderCatalogueGrid();
+    }
+
+    function filterAndShowCategory(cat) {
+      currentFilter = cat;
+      window.location.hash = '#/products';
+      setTimeout(() => {
+        const buttons = document.querySelectorAll('.cat-pill');
+        buttons.forEach(btn => {
+          if (btn.innerText.toLowerCase().includes(cat.replace('-services', '').replace('-tools', ''))) {
+            btn.className = 'cat-pill px-4 py-2 rounded-xl font-bold border border-pk-burgundy bg-pk-burgundy text-pk-cream transition shadow-sm';
+          } else {
+            btn.className = 'cat-pill px-4 py-2 rounded-xl font-semibold border border-pk-border bg-pk-beige text-pk-charcoal hover:border-pk-burgundy transition';
+          }
+        });
+      }, 50);
+    }
+
+    function openProductPage(productId) {
+      window.location.hash = `#/product/${productId}`;
+    }
+
+    /* ========================================================
+       5. PRODUCT DETAIL & PAYMENT CONTROLLER
+       ======================================================== */
+    function renderProductDetailPage(productId) {
+      currentActiveProduct = PRODUCTS.find(p => p.id === productId);
+      if (!currentActiveProduct) {
+        window.location.hash = '#/products';
+        return;
+      }
+
+      document.getElementById('p-breadcrumb').innerText = `Store / ${currentActiveProduct.categoryName} / ${currentActiveProduct.name}`;
+      document.getElementById('p-name').innerText = currentActiveProduct.name;
+      document.getElementById('p-category-tag').innerText = currentActiveProduct.categoryName;
+      document.getElementById('p-price').innerText = `Rs. ${currentActiveProduct.price.toLocaleString()}`;
+      document.getElementById('instruction-price').innerText = `Rs. ${currentActiveProduct.price.toLocaleString()}`;
+      document.getElementById('p-desc').innerText = currentActiveProduct.description;
+
+      document.getElementById('p-art-container').innerHTML = `
+        <img src="${currentActiveProduct.imageUrl}" alt="${currentActiveProduct.name}" class="max-h-24 max-w-[80%] object-contain" onerror="this.onerror=null; this.src='https://cdn-icons-png.flaticon.com/512/2989/2989988.png';">
+      `;
+
+      currentActivePaymentMethod = 'jazzcash';
+      updateActivePaymentAccount();
+    }
+
+    function selectDetailPayment(method, btnElement) {
+      currentActivePaymentMethod = method;
+      document.querySelectorAll('.pay-btn').forEach(btn => {
+        btn.className = 'pay-btn p-3 rounded-xl border border-pk-border bg-pk-beige text-pk-charcoal text-xs font-bold transition';
+      });
+      btnElement.className = 'pay-btn p-3 rounded-xl border border-pk-burgundy bg-pk-burgundy text-pk-cream text-xs font-bold transition shadow-sm';
+      updateActivePaymentAccount();
+    }
+
+    function updateActivePaymentAccount() {
+      const acc = CONFIG.accounts[currentActivePaymentMethod];
+      document.getElementById('active-pay-label').innerText = acc.label;
+      document.getElementById('active-pay-number').innerText = acc.number;
+      document.getElementById('active-pay-title').innerText = `Title: ${acc.title}`;
+    }
+
+    function copyActiveAccount() {
+      const acc = CONFIG.accounts[currentActivePaymentMethod];
+      navigator.clipboard.writeText(acc.number).then(() => {
+        showToast(`${acc.label} copied: ${acc.number}`);
+      }).catch(() => {
+        showToast(`Number: ${acc.number}`);
+      });
+    }
+
+    function showToast(text) {
+      const toast = document.getElementById('toast');
+      document.getElementById('toast-text').innerText = text;
+      toast.classList.remove('opacity-0', 'translate-y-[-12px]');
+      toast.classList.add('opacity-100', 'translate-y-0');
+      setTimeout(() => {
+        toast.classList.add('opacity-0', 'translate-y-[-12px]');
+        toast.classList.remove('opacity-100', 'translate-y-0');
+      }, 2400);
+    }
+
+    // Launch WhatsApp using the designated 03281128196 number
+    function launchWhatsAppOrder() {
+      if (!currentActiveProduct) return;
+
+      const acc = CONFIG.accounts[currentActivePaymentMethod];
+
+      const message = 
+`*NEW ORDER — WONDERPK.STORE*
+────────────────────────────
+• *Product:* ${currentActiveProduct.name}
+• *Category:* ${currentActiveProduct.categoryName}
+• *Price:* Rs. ${currentActiveProduct.price.toLocaleString()}
+• *Payment Method:* ${acc.label} (${acc.number})
+────────────────────────────
+Assalam-o-Alaikum, I have transferred the amount via ${acc.label}. Please find my attached payment screenshot below to confirm my order.`;
+
+      const waURL = `https://wa.me/${CONFIG.whatsappNumber}?text=${encodeURIComponent(message)}`;
+      window.open(waURL, '_blank');
+    }
+
+    /* ========================================================
+       6. INITIALIZATION
+       ======================================================== */
+    window.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('year').innerText = new Date().getFullYear();
+      router();
+    });
+  </script>
+
+</body>
+</html>
